@@ -10,7 +10,10 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+// Configure CORS to allow requests from your frontend's origin
+const frontendUrl = process.env.VITE_FRONTEND_URL || 'http://localhost:5173';
+app.use(cors({ origin: ["http://localhost:5173", "http://localhost:5000"] }));
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
@@ -22,6 +25,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.get('/api/health', (_req, res) => res.json({ status: 'ok' }));
 
 app.use('/api/doctors', require('./routes/doctorRoutes'));
+app.use('/api/engineers', require('./routes/engineerRoutes'));
 app.use('/api/contacts', require('./routes/contactRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
 app.use('/api/debug', require('./routes/debugRoutes'));

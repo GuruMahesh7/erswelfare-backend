@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const doctorSchema = new mongoose.Schema(
+const engineerSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
     age: { type: Number },
@@ -11,11 +11,11 @@ const doctorSchema = new mongoose.Schema(
     email: { type: String, required: true, trim: true, unique: true, lowercase: true },
     passwordHash: { type: String, required: true },
     passportPhoto: { type: String },
-  passportPhotoPublicId: { type: String },
-  certificates: { type: String },
-  certificatesPublicId: { type: String },
+    passportPhotoPublicId: { type: String },
+    certificates: { type: String },
+    certificatesPublicId: { type: String },
     houseAddress: { type: String },
-    clinicAddress: { type: String },
+    officeAddress: { type: String }, // Changed from clinicAddress
     nominee: {
       name: { type: String },
       age: { type: Number },
@@ -51,8 +51,8 @@ const doctorSchema = new mongoose.Schema(
   },
   { 
     timestamps: true,
-    collection: 'doctors' // Explicitly set collection name to ensure it uses 'doctors'
+    collection: 'engineers' // Explicitly set collection name to ensure it uses 'engineers' not 'doctors'
   }
 );
 
-module.exports = mongoose.model('Doctor', doctorSchema);
+module.exports = mongoose.model('Engineer', engineerSchema);
