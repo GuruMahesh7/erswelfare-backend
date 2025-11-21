@@ -16,7 +16,7 @@ const allowedOrigins = [
   process.env.VITE_FRONTEND_URL, // optional alternative env var
   "http://localhost:5173", // vite dev server origin
   "http://localhost:5000",
-  "https://erswelfareindia.vercel.app/", // local backend origin (if used)
+  "https://erswelfareindia.vercel.app", // local backend origin (if used)
 ].filter(Boolean);
 
 const corsOptions = {
